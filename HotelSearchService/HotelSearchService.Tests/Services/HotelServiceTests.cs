@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HotelSearchService.DTOs;
+using HotelSearchService.Helpers;
 using HotelSearchService.Models;
 using HotelSearchService.Profiles;
 using HotelSearchService.Repositories;
@@ -12,16 +13,18 @@ namespace HotelSearchService.Tests.Services
     public class HotelServiceTests
     {
         private readonly Mock<IHotelRepository> _mockHotelStorage;
+        private readonly Mock<IGeoDistanceCalculator> _mockGeoDistanceCalculator;
         private readonly IHotelService _hotelService;
         private readonly IMapper _mapper;
 
         public HotelServiceTests()
         {
             _mockHotelStorage = MockHotelRepository.GetMockHotelRepository();
+            _mockGeoDistanceCalculator = new Mock<IGeoDistanceCalculator> { CallBase = true };
             var mapperConfig = new MapperConfiguration(cfg => cfg.AddProfile(new HotelProfile()));
             _mapper = mapperConfig.CreateMapper();
 
-            _hotelService = new HotelService(_mockHotelStorage.Object, _mapper);
+            _hotelService = new HotelService(_mockHotelStorage.Object, _mockGeoDistanceCalculator.Object, _mapper);
         }
 
         [Fact]

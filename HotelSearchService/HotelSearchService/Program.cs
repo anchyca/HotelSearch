@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using HotelSearchService.Helpers;
 using HotelSearchService.Middleware;
 using HotelSearchService.Repositories;
 using HotelSearchService.Services;
@@ -66,6 +67,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddSingleton<IHotelRepository, InMemoryHotelRepository>(); // Singleton for in-memory storage
+builder.Services.AddScoped<IGeoDistanceCalculator, GeoDistanceHarvestine>(); // Scoped for business logic service
 builder.Services.AddScoped<IHotelService, HotelService>(); // Scoped for business logic service
 
 builder.Services.AddLogging();

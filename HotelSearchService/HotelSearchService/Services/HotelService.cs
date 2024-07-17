@@ -9,11 +9,13 @@ namespace HotelSearchService.Services
     public class HotelService : IHotelService
     {
         private readonly IHotelRepository _hotelStorage;
+        private readonly IGeoDistanceCalculator _geoDistanceCalculator;
         private readonly IMapper _mapper;
 
-        public HotelService(IHotelRepository hotelStorage, IMapper mapper)
+        public HotelService(IHotelRepository hotelStorage, IGeoDistanceCalculator geoDistanceCalculator, IMapper mapper)
         {
             _hotelStorage = hotelStorage;
+            _geoDistanceCalculator = geoDistanceCalculator;
             _mapper = mapper;
         }
 
@@ -100,7 +102,7 @@ namespace HotelSearchService.Services
             var hotelDtos = hotels.Select(h => new HotelWithDistanceDto
             {
                 Hotel = _mapper.Map<HotelDto>(h),
-                Distance = GeoDistanceHelper.GetDistance(latitude, longitude, h.Latitude, h.Longitude)
+                Distance = _geoDistanceCalculator.GetDistance(latitude, longitude, h.Latitude, h.Longitude)
             })
             .OrderBy(h => h.Hotel.Price)
             .ThenBy(h => h.Distance)
