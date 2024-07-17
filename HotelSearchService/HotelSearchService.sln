@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelSearchService", "HotelSearchService\HotelSearchService.csproj", "{4BD09B67-2CA5-4119-876A-B4FEF4C6A278}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelSearchService.Tests", "HotelSearchService.Tests\HotelSearchService.Tests.csproj", "{9CFB64DD-621D-44C4-AFEB-A866841D044E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BD09B67-2CA5-4119-876A-B4FEF4C6A278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD09B67-2CA5-4119-876A-B4FEF4C6A278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD09B67-2CA5-4119-876A-B4FEF4C6A278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD09B67-2CA5-4119-876A-B4FEF4C6A278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFB64DD-621D-44C4-AFEB-A866841D044E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFB64DD-621D-44C4-AFEB-A866841D044E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFB64DD-621D-44C4-AFEB-A866841D044E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFB64DD-621D-44C4-AFEB-A866841D044E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACADD5D3-F14A-49DB-8D14-68A2936C7E94}
+	EndGlobalSection
+EndGlobal
