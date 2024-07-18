@@ -3,6 +3,7 @@ using HotelSearchService.DTOs;
 using HotelSearchService.Services;
 using HotelSearchService.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 
 namespace HotelSearchService.Tests.Controllers
@@ -15,7 +16,7 @@ namespace HotelSearchService.Tests.Controllers
         public HotelsControllerTests()
         {
             _mockHotelService = MockHotelService.GetMockHotelService();
-            _controller = new HotelsController(_mockHotelService.Object);
+            _controller = new HotelsController(_mockHotelService.Object, Mock.Of<ILogger<HotelsController>>());
         }
 
         [Fact]

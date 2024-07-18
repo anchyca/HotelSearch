@@ -11,10 +11,12 @@ namespace HotelSearchService.Controllers
     public class HotelsController : ControllerBase
     {
         private readonly IHotelService _hotelService;
+        private readonly ILogger<HotelsController> _logger;
 
-        public HotelsController(IHotelService hotelService)
+        public HotelsController(IHotelService hotelService, ILogger<HotelsController> logger)
         {
             _hotelService = hotelService;
+            _logger = logger;
         }
 
         /// <summary>
@@ -24,6 +26,7 @@ namespace HotelSearchService.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelDto>>> GetHotels()
         {
+            _logger.LogInformation("Getting all hotels.");
             var hotels = await _hotelService.GetAllHotelsAsync();
             return Ok(hotels);
         }
@@ -36,6 +39,7 @@ namespace HotelSearchService.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelDto>> GetHotel(int id)
         {
+            _logger.LogInformation("Getting hotel by id {id}.", id);
             var hotel = await _hotelService.GetHotelByIdAsync(id);
             if (hotel == null)
             {
@@ -52,8 +56,10 @@ namespace HotelSearchService.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelDto>> CreateHotel(CreateHotelDto createHotelDto)
         {
+            _logger.LogInformation("Adding hotel to database.");
             if (await _hotelService.HotelExists(createHotelDto.Name))
             {
+                _logger.LogInformation("A hotel with the same name already exists.");
                 return BadRequest(new { message = "A hotel with the same name already exists." });
             }
 
@@ -70,9 +76,11 @@ namespace HotelSearchService.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateHotel(int id, UpdateHotelDto updateHotelDto)
         {
+            _logger.LogInformation("Updating hotel.");
             var existingHotel = await _hotelService.GetHotelByIdAsync(id);
             if (existingHotel == null)
             {
+                _logger.LogInformation("Hotel for update not found.");
                 return NotFound();
             }
 
@@ -88,9 +96,11 @@ namespace HotelSearchService.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {
+            _logger.LogInformation("Deleting hotel.");
             var existingHotel = await _hotelService.GetHotelByIdAsync(id);
             if (existingHotel == null)
             {
+                _logger.LogInformation("Hotel to delete not found.");
                 return NotFound();
             }
 
